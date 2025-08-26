@@ -1,0 +1,68 @@
+# Enhanced Transcriber Requirements
+# Требования для Enhanced Transcriber
+
+# Core dependencies
+asyncio-http>=3.8.0
+aiohttp>=3.8.0
+python-multipart>=0.0.5
+
+# Audio processing
+librosa>=0.10.0
+soundfile>=0.12.0
+pydub>=0.25.0
+
+# T-one ASR (Russian language specialist)
+# Note: Install manually from https://github.com/voicekit-team/T-one
+# pip install git+https://github.com/voicekit-team/T-one.git
+
+# Whisper (OpenAI)
+openai-whisper>=20231117
+# Alternative faster whisper
+# faster-whisper>=0.10.0
+
+# OpenAI API (for cloud Whisper)
+openai>=1.0.0
+
+# Machine Learning
+torch>=2.0.0
+torchaudio>=2.0.0
+transformers>=4.30.0
+numpy>=1.21.0
+
+# Text processing
+regex>=2023.0.0
+nltk>=3.8.0
+pymorphy2>=0.9.0  # Russian morphology
+spacy>=3.6.0
+
+# Quality assessment
+jiwer>=3.0.0  # WER/CER calculation
+sentence-transformers>=2.2.0  # Semantic similarity
+scikit-learn>=1.3.0
+
+# Utilities
+tqdm>=4.65.0
+click>=8.1.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+
+# Logging and monitoring
+loguru>=0.7.0
+
+# Development and testing (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0
+
+# Audio format support
+ffmpeg-python>=0.2.0
+
+# Optional: GPU acceleration
+# torch-audio>=0.13.0
+# cuda-toolkit (install separately if using CUDA)
+
+# Optional: Advanced audio enhancement
+# noisereduce>=3.0.0
+# scipy>=1.11.0
