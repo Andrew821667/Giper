@@ -39,17 +39,8 @@ class ToneTranscriber(ITranscriber):
     def _initialize_model(self):
         """Инициализация модели T-one"""
         try:
-            # Правильная инициализация T-one
-            import tone
-            # Создаем T-one pipeline
-            model = tone.StreamingCTCModel.from_hugging_face()
-            logprob_splitter = tone.StreamingLogprobSplitter()
-            decoder = tone.GreedyCTCDecoder()
-            self._model = tone.StreamingCTCPipeline(
-                model=model,
-                logprob_splitter=logprob_splitter,
-                decoder=decoder
-            )
+            from tone_asr import ToneASR
+            self._model = ToneASR.from_pretrained(self.model_name_str)
             logger.info(f"T-one model {self.model_name_str} initialized successfully")
         except ImportError:
             logger.error("tone-asr package not installed. Install with: pip install tone-asr")
@@ -145,28 +136,7 @@ class ToneTranscriber(ITranscriber):
         """
         try:
             # Основная транскрипция
-            # Правильное использование T-one pipeline
-            import tone
-            import numpy as np
-
-            # Загружаем аудио и обрезаем в допустимый диапазон
-            audio_data = tone.read_audio(audio_file)
-            audio_data = np.clip(audio_data, -32768, 32767)
-
-            # Выполняем транскрипцию
-            phrases = self._model.forward_offline(audio_data)
-
-            # Собираем текст из фраз
-            if hasattr(phrases, '__iter__'):
-                text_parts = []
-                for phrase in phrases:
-                    if hasattr(phrase, 'text'):
-                        text_parts.append(phrase.text)
-                    else:
-                        text_parts.append(str(phrase))
-                result = {"text": " ".join(text_parts)}
-            else:
-                result = {"text": str(phrases)}
+            result = self._model.transcribe(audio_file)
             
             # Обработка результата в зависимости от типа
             if hasattr(result, 'text'):
