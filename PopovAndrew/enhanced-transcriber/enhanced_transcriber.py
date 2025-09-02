@@ -138,12 +138,12 @@ class EnhancedTranscriber:
         
         # 2. Whisper Local
         try:
-            whisper_local = WorkingWhisperTranscriber("medium", device="auto")
+            whisper_local = WorkingWhisperTranscriber("large-v3", device="auto")
             self.models.append(whisper_local)
             init_results["models"].append({
                 "name": "Whisper Local",
                 "status": "success",
-                "priority": "medium"
+                "priority": "large-v3"
             })
             logger.info("✅ Whisper Local model loaded")
         except Exception as e:
