@@ -11,11 +11,15 @@ from typing import Optional, Dict, Any, Tuple
 import tempfile
 import shutil
 
+# Необходимые импорты для аудиообработки
+import numpy as np
+import librosa
+import soundfile as sf
+
 from core.interfaces.audio_processor import IAudioProcessor
 from core.models.audio_metadata import AudioMetadata, AudioFormat, AudioQuality
 
 logger = logging.getLogger(__name__)
-
 
 class AudioProcessorService(IAudioProcessor):
     """
@@ -311,7 +315,7 @@ class AudioProcessorService(IAudioProcessor):
     
     def _detect_speech_segments(self, y, sr):
         """Простая детекция сегментов речи"""
-        from ..core.models.audio_metadata import SpeechSegment
+        from core.models.audio_metadata import SpeechSegment
         
         # Простой VAD на основе энергии
         frame_length = int(0.025 * sr)  # 25ms frames
