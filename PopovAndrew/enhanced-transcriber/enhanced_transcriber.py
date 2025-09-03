@@ -11,7 +11,8 @@ from typing import List, Dict, Any, Optional
 
 # Core components
 from providers.tone import ToneTranscriber
-from providers.whisper import WhisperLocalTranscriber, WhisperOpenAITranscriber
+from providers.whisper.working_whisper import WorkingWhisperTranscriber
+from providers.whisper import WhisperOpenAITranscriber
 from services.ensemble_service import EnsembleTranscriptionService
 from services.audio_processor import AudioProcessorService
 from services.quality_assessor import QualityAssessmentService
@@ -137,12 +138,12 @@ class EnhancedTranscriber:
         
         # 2. Whisper Local
         try:
-            whisper_local = WhisperLocalTranscriber("base", device="auto")
+            whisper_local = WorkingWhisperTranscriber("large-v3", device="auto")
             self.models.append(whisper_local)
             init_results["models"].append({
                 "name": "Whisper Local",
                 "status": "success",
-                "priority": "medium"
+                "priority": "large-v3"
             })
             logger.info("✅ Whisper Local model loaded")
         except Exception as e:
