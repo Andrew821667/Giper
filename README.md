@@ -1,11 +1,5 @@
 # 🎯 Enhanced Transcriber - ансамблевая система транскрипции
 
-## 🚀 Запуск в Google Colab
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Andrew821667/Giper/blob/main/PopovAndrew/Enhanced_Transcriber_STRICT_NO_FALLBACK.ipynb)
-
----
-
 ## 📖 Описание проекта
 
 **Enhanced Transcriber** - это ансамблевая система транскрипции аудио в текст для русского языка.
